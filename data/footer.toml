@@ -1,0 +1,15 @@
+copyright = "© 2026-2027 Ranjan Phukan. All rights reserved."
+
+[[social]]
+  type = "linkedin"
+  id   = "ranjan-phukan"
+  url  = "www.linkedin.com/in/ranjan-phukan"
+  icon = "bxl-linkedin"
+  name = "LinkedIn"
+
+[[social]]
+  type = "github"
+  id   = "rphukan"
+  url  = "https://github.com/rphukan"
+  icon = "bxl-github"
+  name = "GitHub"

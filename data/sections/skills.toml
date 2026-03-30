@@ -1,0 +1,30 @@
+
+[[skill]]
+  title = "Cloud Computing"
+  text  = "Deep qualified with GCP cloud services. Capable of develop serverless, containerized, and traditional services. As well as, experienced with writing infrastructure as code with Terraform."
+  icon  = "bx-cloud"
+
+[[skill]]
+  title = "Java Backend"
+  text  = "Extensive experience building scalable enterprise applications using Java and Spring Boot."
+  icon  = "bxl-java"
+
+[[skill]]
+  title = "Python Scripting"
+  text  = "Automation and data processing using Python and Flask."
+  icon  = "bxl-python"
+
+[[skill]]
+  title = "Microservices Architecture"
+  text  = "Designing distributed systems using Docker, Kubernetes, and hexagonal architecture."
+  icon  = "bx-network-chart"
+
+[[skill]]
+  title = "REST APIs & Apigee"
+  text  = "Expertise in designing scalable RESTful architectures using OpenAPI specs. Proficient in API management via Apigee, including proxy development, security policies (OAuth, JWT), traffic management, and developer portal governance."
+  icon  = "bx-cloud-lightning"  
+
+[[skill]]
+  title = "Event-Driven Architecture & Kafka"
+  text  = "Expertise in designing decoupled, scalable systems using Event-Driven Architecture (EDA). Proficient in Apache Kafka for real-time data streaming and handling high-throughput event processing with Kafka Streams."
+  icon  = "bx-pulse"  

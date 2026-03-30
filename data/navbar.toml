@@ -1,0 +1,30 @@
+title     = "Ranjan Phukan"
+logoLink  = "https://ranjanphukan.com/"
+logo      = "img/logo.png"
+
+[[menu]]
+  text        = "Home"
+  description = "Welcome to my personal website"
+  link        = "/"
+  target      = "_self"
+
+[[menu]]
+  text        = "Posts"
+  description = "Read my latest posts"
+  link        = "/posts"
+  target      = "_self"
+
+[[menu]]
+  text        = "Tags"
+  description = "Browse tags"
+  link        = "/tags"
+  target      = "_self"
+
+[button]
+  enabled = true
+  text    = "Get my CV"
+  link    = "files/cv.docx"
+  target  = "_blank"
+
+[themeToggle]
+  enabled = true

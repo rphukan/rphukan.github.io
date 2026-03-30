@@ -1,0 +1,14 @@
+[[testimonial]]
+  name = "John Doe"
+  role = "Co-Founder at Company"
+  text = "John is a highly skilled and talented technology professional who consistently demonstrated his expertise and leadership qualities. He is a great team player and a pleasure to work with."
+
+[[testimonial]]
+  name = "Mary Smith"
+  role = "CEO at Company"
+  text = "I had the pleasure of working with John for over five years. He is a highly skilled and talented technology professional who consistently demonstrated his expertise and leadership qualities. He is a great team player and a pleasure to work with."
+
+[[testimonial]]
+  name = "Karen Johnson"
+  role = "CTO at Company"
+  text = "John is a highly skilled and talented technology professional who consistently demonstrated his expertise and leadership qualities."

@@ -1,0 +1,20 @@
+baseURL      = 'https://ranjanphukan.com/'
+languageCode = 'en-us'
+title        = 'Ranjan Phukan'
+
+[params]
+  description = "Ranjan Phukan personal website"
+  keywords    = "Ranjan Phukan, personal website, blog, portfolio"
+  avatar      = "img/ranjan.jpg"
+
+  [params.author]
+    name = 'Ranjan Phukan'
+
+# Add theme using Hugo modules
+[module]
+  [[module.imports]]
+    path = "github.com/hugo-porto/theme"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
