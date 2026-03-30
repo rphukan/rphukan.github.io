@@ -21,7 +21,7 @@ logo      = "img/logo.png"
   target      = "_self"
 
 [button]
-  enabled = true
+  enabled = false
   text    = "Get my CV"
   link    = "files/cv.docx"
   target  = "_blank"
