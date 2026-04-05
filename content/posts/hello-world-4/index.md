@@ -1,9 +1,9 @@
 ---
-title: 'Hello World 4'
+title: 'Snowflake and Streamlit'
 date: 2024-04-29T16:59:59+03:00
 tags: ['hello']
-image: 'index.png'
-draft: false
+image: 'snowflake.png'
+draft: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet,

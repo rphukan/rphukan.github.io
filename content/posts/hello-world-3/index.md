@@ -1,9 +1,9 @@
 ---
-title: 'Hello World 3'
+title: 'OAuth2 and OpenID Connect'
 date: 2024-04-27T16:59:59+03:00
 tags: ['world']
-image: 'index.png'
-draft: false
+image: 'oauth.png'
+draft: true
 ---
 
 Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo

@@ -20,6 +20,12 @@ logo      = "img/logo.png"
   link        = "/tags"
   target      = "_self"
 
+[[menu]]
+  text        = "About"
+  description = "About me"
+  link        = "/about"
+  target      = "_self"
+
 [button]
   enabled = false
   text    = "Get my CV"

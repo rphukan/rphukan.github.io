@@ -1,9 +1,9 @@
 ---
-title: 'Hello World 2'
+title: 'Build your own website'
 date: 2024-04-26T16:59:59+03:00
 tags: ['hello', 'world', 'hello2']
-image: 'index.png'
-draft: false
+image: 'hugo.png'
+draft: true
 ---
 
 Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo

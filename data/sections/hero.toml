@@ -2,6 +2,7 @@ title1 = "ENGINEER"
 text1  = "I am a deeply hands-on software engineer who finds purpose in the 'build'—constantly experimenting with emerging stacks to stay at the technical frontier. With 20 years of experience, my passion remains rooted in writing clean code and rapidly mastering new technologies through direct implementation."
 
 title2 = "MANAGER"
+text2 = "Managing a team."
 
 title3 = "ARCHITECT"
 text3  = "I specialise in designing scalable, resilient software architectures that align complex business requirements with robust technical strategies. My expertise is in Event-Driven systems, Microservices, and API Governance, focusing on building extensible platforms that stand the test of time."

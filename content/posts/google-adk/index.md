@@ -1,9 +1,9 @@
 ---
-title: 'Hello World'
-date: 2024-04-25T16:58:51+03:00
-tags: ['hello', 'world']
-image: 'index.png'
-draft: false
+title: 'Build an Agent using Google Agent Development Kit - ADK'
+date: 2026-04-01T16:58:51+05:30
+tags: ['Agent Development Kit', 'ADK']
+image: 'adk.png'
+draft: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet,
