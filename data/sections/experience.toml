@@ -1,30 +1,15 @@
 # The list of companies
 [[company]]
-  name = "DWS - Deutsche Bank Group"
+  name = "DWS - Deutsche Bank"
   date = "2016 - present"
-  role = "Tech Lead"
-  text = [
-    "Led the migration of the Synthetic ETF portfolio management system from Broadridge Paladyne to BRS Aladdin, enabling seamless operations and reducing platform risk.",
-    "Designed and delivered the first DWS Open API using Apigee API Gateway, laying the foundation for future API-driven integrations and partnerships.",
-    "Designed and developed a suite of applications for the Passive Asset Management business, replacing business-created EUDAs—boosting operational efficiency, improving compliance, and reducing risk exposure.",
-    "Manage a cross-functional team of 6 employees, 3 vendor resources, and have been mentoring 3–4 graduate engineers annually, building strong engineering capability and architectural thinking across teams.",
- ]
+
 
 [[company]]
   name = "HSBC"
   date = "2007 - 2016"
-  role = "Technology Architect"
-  text = [
-    "Worked on a flagship Internet Banking application named Global Services Platform (GSP) for the retail bank using microservice based architecture.",
-    "Worked on digital transformation projects for the retail bank and helped the teams in microservice based architecture adoption.",
-    "Worked on the online Account Opening Application as a Java developer and developed couple of modules from scratch.",
-  ]
+
 
 [[company]]
-  name = "Premier Technology Group"
+  name = "Premier Technology"
   date = "2006 - 2007"
-  role = "Software Engineer"
-  text = [
-    "Developed a web based Product for the retail and institutional Insurance clients.",
-    "Enhanced my skills on Java, JavaScript, Database and other web technologies.",
-  ]
+

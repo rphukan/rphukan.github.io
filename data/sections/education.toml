@@ -1,19 +1,15 @@
 # The list of education places and courses
 [[education]]
   date  = "2025"
-  title = "Google Cloud Professional Cloud Architect"
+  title = "Google Professional Cloud Architect"
   text  = "Certified professional proficient in designing, developing, and managing robust, secure, and scalable cloud solutions. Expertise includes architecting for high availability, cloud-native migrations, and optimizing infrastructure for cost and performance on GCP."
 
 [[education]]
+  date  = "2016"
   title = "TOGAF® 9 Certified Enterprise Architect"
-  text  = "Certified in the Open Group Architecture Framework (TOGAF), specializing in the Architecture Development Method (ADM). Skilled in designing enterprise-level blueprints, managing stakeholder requirements, and ensuring alignment between business strategy and IT infrastructure."
+  text  = "Certified in The Open Group Architecture Framework (TOGAF). Skilled in designing enterprise-level blueprints, managing stakeholder requirements, and ensuring alignment between business strategy and IT infrastructure."
 
 [[education]]
   date  = "2006"
   title = "Post Graduate Diploma in Advanced Computing (PG-DAC)"
   text  = "Completed intensive professional training at the Centre for Development of Advanced Computing (C-DAC), Hyderabad. Focused on advanced software engineering, systems programming, and full-stack development."
-
-[[education]]
-  date  = "2004"
-  title = "Bachelor of Engineering in Electronics & Telecommunication"
-  text  = "Completed at Assam Engineering College (AEC), Guwahati. Focused on core engineering principles, digital electronics, and telecommunication systems."
