@@ -6,9 +6,11 @@ title        = 'Ranjan Phukan'
   description = "Ranjan Phukan personal website"
   keywords    = "Ranjan Phukan, personal website, blog, portfolio"
   avatar      = "img/ranjan.jpg"
+  custom_css  = ["css/custom.css"]
 
   [params.author]
     name = 'Ranjan Phukan'
+  
 
 # Add theme using Hugo modules
 [module]
