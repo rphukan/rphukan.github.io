@@ -1,0 +1,43 @@
+{{ define "main" }}
+  <div class="container max-w-screen-xl mx-auto px-4">
+    <h1 class="text-center font-medium text-gray-700 text-3xl md:text-4xl mb-5 font-poppins">
+      {{ .Title }}
+    </h1>
+
+    {{ if .Data.Term }}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ $posts := where .Pages "Draft" false }}
+        {{ $posts = $posts.ByPublishDate.Reverse }}
+        {{ $paginator := .Paginate $posts 10 }}
+        {{ range $paginator.Pages }}
+          <div class="bg-gray-50 px-8 py-10 rounded-md">
+            {{ partial "posts/meta.html" . }}
+            <div class="post-card">
+              {{ .Summary | safeHTML }}
+              <div class="block text-right mt-4 font-light text-lg">
+                <a href="{{ .RelPermalink }}" class="text-blue-500">Read more...</a>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+      {{ partial "pagination.html" . }}
+    {{ else }}
+      {{ $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" }}
+      {{ range sort .Site.Taxonomies.tags }}
+        {{ $firstChar := substr .Page.Title 0 1 | upper }}
+        {{ if $firstChar | in $letters }}
+          {{ $curLetter := $.Scratch.Get "curLetter" }}
+          {{ if ne $firstChar $curLetter }}
+            {{ $.Scratch.Set "curLetter" $firstChar }}
+            <div class="border-b-2 border-gray-300 px-4 py-2 text-lg font-medium mb-4">{{ $firstChar }}</div>
+          {{ end }}
+          <a class="text-blue-500 hover:underline text-sm mx-1 h-5" href="{{ .Page.Permalink }}">
+            <i class="bx bx-purchase-tag-alt text-gray-500 h-4"></i>
+            {{ .Page.Title }} ({{ .Count }})
+          </a>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

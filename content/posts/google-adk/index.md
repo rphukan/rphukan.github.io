@@ -1,11 +1,11 @@
 ---
-title: 'Build a Git PR Review agent using Google Agent Development Kit'
+title: 'Google Agent Development Kit'
 date: 2026-04-01T16:58:51+05:30
 tags: ['Agent Development Kit', 'ADK', 'PR Review Agent']
 image: 'adk.png'
 draft: false
 ---
-## **Google ADK**
+# Git PR Review agent with Google ADK
 ### **What is Google ADK?**
 ADK is open sourced framework for developing agents which works with all the ppopular LLM models. It is also available in multiple languages like python, java and go. Using ADK you can create a multi-agent architecture where the primary agent can delegate the tasks to more specialized agents. You can also create agent workflows with agents in a parallel, sequencial or loop workflow. These agents can also use equiped with tools both pre-build as well as custom tools and MCP. ADK support other popular frameworks like LangChain and protocols like A2A.
 ### **Setup**

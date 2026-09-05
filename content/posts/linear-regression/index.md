@@ -1,11 +1,11 @@
 ---
-title: 'Snowflake and Streamlit'
+title: 'Linear Regression'
 date: 2024-04-29T16:59:59+03:00
-tags: ['hello']
-image: 'snowflake.png'
+tags: ['Linear Regression', "Tensorflow"]
 draft: true
 ---
 
+# Linear Regression using Tensorflow
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet,
 adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue,
 euismod non, mi.

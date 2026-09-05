@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <div class="container max-w-screen-xl mx-auto px-4">
+    <h1 class="text-center font-medium text-gray-700 text-3xl md:text-4xl mb-5 font-poppins">
+      {{ .Title }}
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {{ range .Pages }}
+        <article class="bg-gray-50 px-8 py-10 rounded-md">
+          <div class="post-card">
+            {{ .Summary }}
+            <div class="block text-right mt-4 font-light text-lg">
+              <a href="{{ .RelPermalink }}" class="text-blue-500">Read more...</a>
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

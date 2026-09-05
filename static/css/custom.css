@@ -1,0 +1,18 @@
+.highlight pre,
+.highlight pre code,
+.highlight pre code > span {
+	max-width: 100%;
+	min-width: 0;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.highlight pre {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.highlight pre code > span {
+	display: block !important;
+}

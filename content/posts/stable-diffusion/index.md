@@ -1,11 +1,11 @@
 ---
-title: 'OAuth2 and OpenID Connect'
+title: 'Stable Diffusion'
 date: 2024-04-27T16:59:59+03:00
-tags: ['world']
-image: 'oauth.png'
+tags: ['Stable Diffusion', "Image Generation"]
 draft: true
 ---
 
+# Running Stable Diffusion locally
 Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo
 in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales.
 
