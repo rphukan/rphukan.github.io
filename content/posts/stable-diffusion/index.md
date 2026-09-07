@@ -2,7 +2,7 @@
 title: 'Stable Diffusion'
 date: 2024-04-27T16:59:59+03:00
 tags: ['Stable Diffusion', "Image Generation"]
-draft: false
+draft: true
 ---
 
 # Running Stable Diffusion locally
