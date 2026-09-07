@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <section class="container max-w-screen-xl mx-auto px-4 py-16 text-center">
+    <div class="bg-gray-50 px-8 py-10 rounded-md">
+      <p class="text-gray-500 text-6xl font-medium">404</p>
+      <h1 class="mt-5 text-3xl md:text-4xl font-medium text-gray-700">
+        Page not found
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        The page you requested does not exist or may have moved.
+      </p>
+      <a href="{{ "/" | relURL }}" class="inline-block mt-8 text-blue-500 hover:underline">
+        Return to the home page
+      </a>
+    </div>
+  </section>
+{{ end }}
