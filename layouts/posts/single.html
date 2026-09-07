@@ -3,6 +3,7 @@
     <div class="grid grid-cols-1 gap-6">
       <div class="bg-gray-50 px-8 py-10 rounded-md post-content">
         {{ .Content | safeHTML }}
+        {{ partial "thankyou.html" . }}
       </div>
     </div>
   </div>

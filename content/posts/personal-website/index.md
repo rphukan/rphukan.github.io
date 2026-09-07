@@ -1,6 +1,6 @@
 ---
 title: 'Build your own website'
-date: 2024-04-26T16:59:59+03:00
+date: 2026-08-29T16:59:59+03:00
 tags: ['Hugo', 'Github Pages', 'Blogging', "Personal Website"]
 draft: false
 ---
@@ -210,3 +210,6 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 ```
+
+### **4. Add your own domain**
+Finally you can by a nice domain from any of the domain registrars and [add it to your Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
