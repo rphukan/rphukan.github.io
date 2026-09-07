@@ -1,7 +1,0 @@
-[build]
-  publish = "public"
-  command = "make build"
-
-[context.production.environment]
-  HUGO_VERSION = "0.116.0"
-  HUGO_ENV     = "production"

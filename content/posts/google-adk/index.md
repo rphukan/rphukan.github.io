@@ -6,7 +6,7 @@ image: 'adk.png'
 draft: false
 ---
 # Git PR Review agent with Google ADK
-### **What is Google ADK?**
+### **Google ADK**
 ADK is open sourced framework for developing agents which works with all the ppopular LLM models. It is also available in multiple languages like python, java and go. Using ADK you can create a multi-agent architecture where the primary agent can delegate the tasks to more specialized agents. You can also create agent workflows with agents in a parallel, sequencial or loop workflow. These agents can also use equiped with tools both pre-build as well as custom tools and MCP. ADK support other popular frameworks like LangChain and protocols like A2A.
 ### **Setup**
 We will be using python as our language of choice. ADK need `Python 3.11+` . Check your python version, if not available download it from [here](https://www.python.org/downloads/)

@@ -10,7 +10,7 @@
   }}
 
   {{/* Custom data from configuration file */}}
-  {{ with site.Data.about }}
+  {{ with hugo.Data.about }}
     {{ $sections = slice }}
     {{ if .section }}{{ $sections = .section }}{{ end }}
   {{ end }}
