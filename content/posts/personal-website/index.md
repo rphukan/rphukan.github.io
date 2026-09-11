@@ -5,8 +5,9 @@ tags: ['Hugo', 'Github Pages', 'Blogging', "Personal Website"]
 draft: false
 ---
 # Github Pages and Hugo
+
 ### **1. Hosting on Github Pages**
-You can create your website for free just using a Github repo. [GitHub Pages](https://docs.github.com/en/pages) is a static site hosting service provided by Github which turn your repository containing your website statc contents like HTML, CSS, and JavaScript files into a live website. You can also optionally configure a build process to convert your repo contents to static files and publish it to your website. 
+You can create your website for free just using a Github repo. [GitHub Pages](https://docs.github.com/en/pages) is a static site hosting service provided by Github which turn your repository containing your website statc contents like HTML, CSS, and JavaScript files into a live website. 
 
 Github Pages supports two types of sites 
 * A site for a user or an organization account
@@ -17,12 +18,17 @@ The site is going to be available at `http(s)://<owner>.github.io`. Here `<owner
 
 This can be enabled for each of your repository and the site would be available at `http(s)://<owner>.github.io/<repositoryname>`. The contents for the site is stored in the `root` or `docs` folder of your repository. For example [this](https://rphukan.github.io/msr-documentation/) is the documentaion of a sample application that i have in my github account. 
 
-### **2. Generating the static contents of your site**
-If you publish your site from a source branch, GitHub Pages will use Jekyll to build your site by default from the markdown files. We can also use a different static site generator here.
+You can write all your website contents in markdown files and GitHub Pages will use Jekyll to build your site by default from the markdown files. With this your site is ready and you should be able to access it on the urls as mentioned above.
+
+But apart form the default Jekyll, we can also use a different static site generators for more flexibility which we will see next.
+
+
+### **2. Generating the static contents of your site using Hugo**
 [Hugo](https://gohugo.io/) is a static site generator written in [Go](https://go.dev/doc/) language. We would be using `Hugo` to generate our static contents.
 
 To develop the site on your local, first install `Go` as `Hugo` runs using Go
 #### **2.1. Install Go**
+To install `Go` on windows you can use the below command. For other operating systems refer the [Go Documentation Page](https://go.dev/doc/)
 ```shell
 PS C:\home\Projects> winget install GoLang.Go
 Found Go Programming Language [GoLang.Go] Version 1.27.0
@@ -34,8 +40,9 @@ Successfully verified installer hash
 Starting package install...
 Successfully installed
 ```
-and then install `Hugo`
+
 #### **2.2. Install Hugo**
+Next you need to install `Hugo`. This is how you can install it on windows. For other Operating Systems refer the  [Hugo installation page](https://gohugo.io/installation/)
 ```shell
 PS C:\home\Projects> winget install Hugo.Hugo.Extended
 The `msstore` source requires that you view the following agreements before using.
@@ -58,41 +65,113 @@ Command line alias added: "hugo"
 Successfully installed
 ```
 
-#### **2.3. Your contents**
+#### **2.3. Create your project and add a theme**
+Hugo uses a templating system and uses a embeded webserver on local during development to instantly render the content on `http://localhost:1313/` by default. Create the skeleton of your content project in the `<owner>.github.io` folder using the command as shown below. 
 
-#### **2.4. Using a theme**
-
-#### **2.5. Start Hugo server**
-you can use your `VS Code` `IDE` for editing the site contents. For testing the generated content on local, start the `Hugo Server` from the `IDE Terminal`
 ```shell
-PS C:\home\Projects\Blog\rphukan.github.io> hugo server
-Watching for changes in C:/home/Projects/Blog/rphukan.github.io/archetypes, C:/home/Projects/Blog/rphukan.github.io/assets/{css,img}, C:/home/Projects/Blog/rphukan.github.io/content/{about,posts}, C:/home/Projects/Blog/rphukan.github.io/data/sections, C:/home/Projects/Blog/rphukan.github.io/layouts/{_default,_markup,about,partials,posts,...}, C:/home/Projects/Blog/rphukan.github.io/package.json, C:/home/Projects/Blog/rphukan.github.io/static/{css,files}
-Watching for config changes in C:\home\Projects\Blog\rphukan.github.io\hugo.toml, C:\home\Projects\Blog\rphukan.github.io\go.mod
+PS C:\home\Projects> hugo new project rphukan.github.io
+Congratulations! Your new Hugo project was created in C:\home\Projects\rphukan.github.io.
+
+Just a few more steps...
+
+1. Change the current directory to C:\home\Projects\rphukan.github.io.
+2. Create or install a theme:
+   - Create a new theme with the command "hugo new theme <THEMENAME>"
+   - Or, install a theme from https://themes.gohugo.io/
+3. Edit hugo.toml, setting the "theme" property to the theme name.
+4. Create new content with the command "hugo new content <SECTIONNAME>\<FILENAME>.<FORMAT>".
+5. Start the embedded web server with the command "hugo server --buildDrafts".
+
+See documentation at https://gohugo.io/.
+```
+
+Once done select a theme from the [existing themse repo](https://themes.gohugo.io/). You can also add your own theme if you wish.
+
+Now there are two ways to add a theme
+* as a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+* as a [Hugo Module](https://gohugo.io/hugo-modules/introduction/)
+
+To keep it simple, we will add it as a Git submodule. For that you initialize your project folder as an empty git repository and add the selected theme repo as the submodule under the `themes/<theme-name>` folder
+```shell
+PS C:\home\Projects\rphukan.github.io> git init
+Initialized empty Git repository in C:/home/Projects/rphukan.github.io/.git/
+
+PS C:\home\Projects\rphukan.github.io> git submodule add https://github.com/hugo-porto/theme themes/hugo-porto
+Cloning into 'C:/home/Projects/rphukan.github.io/themes/hugo-porto'...
+```
+Next to add this theme to your project, update your project's hugo congiguration file `hugo.toml` and add the below line where `<theme-name>` is `'hugo-porto'` in this example
+```shell
+theme = 'hugo-porto'
+```
+You can read this [theme's readme file](https://github.com/hugo-porto/theme) if you want to add this as a Hugo Module.
+
+#### **2.4. Start Hugo server**
+Now if you start the `Hugo Server` you should see the default page of your theme. We will further edit your site contents next.
+You can use your `VS Code` `IDE` for editing the site contents. For testing the generated content on local you can start the `Hugo Server` from the `IDE Terminal` with the below command
+```shell
+PS C:\home\Projects\rphukan.github.io> hugo server --buildDrafts
+Watching for changes in C:/home/Projects/rphukan.github.io/archetypes, C:/home/Projects/rphukan.github.io/assets, C:/home/Projects/rphukan.github.io/content, C:/home/Projects/rphukan.github.io/data, C:/home/Projects/rphukan.github.io/i18n, C:/home/Projects/rphukan.github.io/layouts, C:/home/Projects/rphukan.github.io/static
+Watching for config changes in C:\home\Projects\rphukan.github.io\hugo.toml
 Start building sites … 
 hugo v0.165.0-76a5e1880ab46688155b02e99bab9be2a6134492+extended windows/amd64 BuildDate=2026-08-12T14:26:28Z VendorInfo=gohugoio
 
-WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.
+WARN  found no layout file for "html" for kind "home": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+WARN  found no layout file for "html" for kind "taxonomy": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
 
                   │ EN 
 ──────────────────┼────
- Pages            │ 17 
+ Pages            │  4 
  Paginator pages  │  0 
  Non-page files   │  0 
- Static files     │  3 
- Processed images │  3 
- Aliases          │  4 
+ Static files     │  0 
+ Processed images │  0 
+ Aliases          │  0 
  Cleaned          │  0 
 
-Built in 20 ms
+Built in 3 ms
 Environment: "development"
 Serving pages from disk
 Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
 Web Server is available at http://localhost:1313/ (bind address 127.0.0.1) 
 Press Ctrl+C to stop
 ```
+Once tested on local you can push your changes to your Github Pages repo `<owner>.github.io`. We will add automated builds and deployment later.
 
-#### **2.4. Customizing the defaults**
+#### **2.5. Adding your contents**
+So far you only see the default page. Now lets see how to add some contents. For that first we will need to understand the structure of the content project skeleton that we have created above.
 
+There are different subfolders in your content project that contribute to your content, site structure, behavior, and look and feel.
+```yaml
+rphukan.github.io/
+├── archetypes/
+│   └── default.md
+├── assets/
+├── content/
+├── data/
+├── i18n/
+├── layouts/
+├── static/
+├── themes/
+└── hugo.toml         <-- project configuration
+```
+
+apart from the above, you may also see the below two folders which Hugo build generates on your local with the generated built contents. You do not push these two folders to your Gitbug Pages repo.
+```yaml
+rphukan.github.io/
+├── public/
+├── resources/
+```
+This is what goes in these directories
+
+* `archetypes`
+It contains templates for new contents. When you generate your website contents using the command `hugo new content`, Hugo creates a new file in the content directory, using an archetype in this folder as a template. For more details [refer here](https://gohugo.io/content-management/archetypes/)
+
+#### **2.6. Customizing the defaults**
+
+#### **2.7. Using theme and modules**
+
+#### **2.8. Using mathematical or scintific expressions and diagrams**
+You can write mathematical equations and scintific expressions in Markdown using LaTeX markup.
 
 ### **3. Github actions for CI/CD**
 If we use a static site generator other than Jekyll, we need t you write a GitHub Actions to build and publish ous site.
@@ -212,4 +291,4 @@ jobs:
 ```
 
 ### **4. Add your own domain**
-Finally you can by a nice domain from any of the domain registrars and [add it to your Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
+Finally you can buy a nice domain from any of the domain registrars and [add it to your Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
