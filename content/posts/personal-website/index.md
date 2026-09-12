@@ -4,6 +4,7 @@ date: 2026-08-29T16:59:59+03:00
 tags: ['Hugo', 'Github Pages', 'Blogging', "Personal Website"]
 draft: false
 ---
+
 # Github Pages and Hugo
 
 ### **1. Hosting on Github Pages**
@@ -106,7 +107,7 @@ theme = 'hugo-porto'
 You can read this [theme's readme file](https://github.com/hugo-porto/theme) if you want to add this as a Hugo Module.
 
 #### **2.4. Start Hugo server**
-Now if you start the `Hugo Server` you should see the default page of your theme. We will further edit your site contents next.
+Now if you start the `Hugo Server` you should see the home page of your theme. We will further edit your site contents next.
 You can use your `VS Code` `IDE` for editing the site contents. For testing the generated content on local you can start the `Hugo Server` from the `IDE Terminal` with the below command
 ```shell
 PS C:\home\Projects\rphukan.github.io> hugo server --buildDrafts
@@ -137,10 +138,10 @@ Press Ctrl+C to stop
 ```
 Once tested on local you can push your changes to your Github Pages repo `<owner>.github.io`. We will add automated builds and deployment later.
 
-#### **2.5. Adding your contents**
-So far you only see the default page. Now lets see how to add some contents. For that first we will need to understand the structure of the content project skeleton that we have created above.
+#### **2.5. Understanding the project skeleton**
+So far you only see the home page. next you would want to add some contents. For that first we will need to understand the structure of the content project skeleton that we have created above.
 
-There are different subfolders in your content project that contribute to your content, site structure, behavior, and look and feel.
+There are different subfolders in your content project that contribute to your content, site structure, behavior, and look and feel. They contain Hugo’s seven component types: static files, content, layouts, data, assets, internationalization (i18n) resources, and archetypes.
 ```yaml
 rphukan.github.io/
 ├── archetypes/
@@ -155,23 +156,88 @@ rphukan.github.io/
 └── hugo.toml         <-- project configuration
 ```
 
-apart from the above, you may also see the below two folders which Hugo build generates on your local with the generated built contents. You do not push these two folders to your Gitbug Pages repo.
+This is what goes in these directories
+
+* [`archetypes`](https://gohugo.io/content-management/archetypes/)
+It contains templates for new contents. When you generate your website contents using the command `hugo new content`, Hugo creates a new file in the content directory, using an archetype in this folder as a template.
+
+* [`assets`](https://gohugo.io/hugo-pipes/introduction/)
+This contains resources like JavaScripts, CSS, images etc. 
+
+* [`content`](https://gohugo.io/content-management/organization/)
+The content folder conatins your site contents. You create your site contents in markup(markdonw mostly) files and structured in the same manner as its rendered on your site. As an example this is how my contents would be structured
+```yaml
+└── content
+    └── about
+    |   └── index.md  // <- https://ranjanphukan.com/about/
+    ├── posts
+    |   ├── personal-website
+    |   |   └── index.md  // <- https://ranjanphukan.com/posts/personal-website/
+```
+
+* [`data`](https://gohugo.io/content-management/data-sources/)
+The data directory contains data in JSON, TOML, YAML, or XML files. Hugo creates a data structure with these data which you can use in a template in your content.
+
+* [`i18n`](https://gohugo.io/content-management/multilingual/)
+This directory is for for localizing your contents with different languages.
+
+* [`layouts`](https://gohugo.io/templates/introduction/)
+The layout folder would contain the templates for laying out your site structure. Your theme should already provide you a layout but if you want to override that default behaviour, you would do it here with your own layout templates. Start with the default one provided by the theme and if required you can override it later.
+
+*   `static`
+The static directory contains files that will be copied to the public directory when you build your project. This can also contain CSS and JavaScript files, though the new aproach for them is the `assets` directory.
+
+* [`themes`](https://gohugo.io/getting-started/directory-structure/#theme-skeleton)
+This is where you add your themse as Git submodules. Hogo themes work using the Hugo [unified file system](https://gohugo.io/quick-reference/glossary/#unified-file-system) and uses the same directories that we have discussed here. This allows you to override a theme’s template by adding your own copy of it in the same location within the project directory.
+
+Apart from the above, you may also see the below two folders which Hugo build generates on your local with the generated built contents. You do not push these two folders to your Gitbug Pages repo.
 ```yaml
 rphukan.github.io/
 ├── public/
 ├── resources/
 ```
-This is what goes in these directories
+* `public`
+The public directory contains the published website, generated when you run the hugo build or hugo server commands. 
 
-* `archetypes`
-It contains templates for new contents. When you generate your website contents using the command `hugo new content`, Hugo creates a new file in the content directory, using an archetype in this folder as a template. For more details [refer here](https://gohugo.io/content-management/archetypes/)
+* `resources`
+This is generated when you run the hugo build or hugo server commands.It contains cached output and by default includes CSS and images. 
 
-#### **2.6. Customizing the defaults**
 
-#### **2.7. Using theme and modules**
+#### **2.6. Adding your contents**
+Now that we have understood the skeleton of our content project, lets add our first content. Run the below command from your terminal and it would create your a content under `content/posts`. 
+```shell
+hugo new content content/posts/my-first-post.md
+```
+If you open the markdown file `my-first-post.md` file created under `content/posts` you will see that your post starts with some [front matters](https://gohugo.io/content-management/front-matter/). Your write your content after that front matter block
+```yaml
+---
+  title: 'My First Post'
+  date: 2026-09-12T11:40:18+05:30
+  draft: true
+---
+your content goes here
+```
+Notice the `draft=true` front matter. By default, Hugo does not publish draft content when you build the project. Start the Hugo server to include the draft contents with the below commands and you should see your first page.
+```shell
+hugo server --buildDrafts
+hugo server -D
+```
+The terminal should print the localhost url after the server starts. Use that to view your post on browser.
 
-#### **2.8. Using mathematical or scintific expressions and diagrams**
-You can write mathematical equations and scintific expressions in Markdown using LaTeX markup.
+Congratulations!!!!! You are ready now to write your post.
+
+You can keep editing your post. The server running on local should automatically render the updated content on your browser. Once ready you can change `draft: false` and push the updated contents to the Github Pages repo. If you have the automated build ( which we will see after few steps) configured on Githug Pages, you will see your post on your live site after few moments later.
+
+#### **2.7. Advance(Optional) : Changing the layout**
+
+#### **2.8. Advance(Optional) : Using mathematical expressions**
+You can write mathematical equations and scintific expressions in Markdown using LaTeX markup. [More details](https://gohugo.io/content-management/mathematics/)
+
+#### **2.8. Advance(Optional) : Adding mermaid diagrams**
+[Details](https://gohugo.io/content-management/diagrams/)
+
+#### **2.8. Advance(Optional) : Syntax highlighting for Code**
+[Details](https://gohugo.io/content-management/syntax-highlighting/)
 
 ### **3. Github actions for CI/CD**
 If we use a static site generator other than Jekyll, we need t you write a GitHub Actions to build and publish ous site.
@@ -181,6 +247,7 @@ Add the below workflow in a file like `.github/workflows/hugo.yaml` under the ro
 In this workflow Hugo reads contents from content, layouts from layouts, data from data, assets, configuration, and the theme. It generates the complete static website in temporary `./public/` folder of the runner. The action `actions/upload-pages-artifact@v3` then uploads the files to GitHub’s temporary Actions artifact storage. They are not committed or pushed back into the repository. Finally the `actions/deploy-pages@v4` action publishes the uploaded artifacts to our Github Pages site.
 
 Refer [this page](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) for more details
+
 ```yaml
 name: Build and deploy
 on:

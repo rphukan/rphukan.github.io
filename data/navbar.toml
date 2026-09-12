@@ -26,11 +26,5 @@ logo      = "img/logo.png"
   link        = "/about"
   target      = "_self"
 
-[button]
-  enabled = false
-  text    = "Get my CV"
-  link    = "files/cv.docx"
-  target  = "_blank"
-
 [themeToggle]
   enabled = true
