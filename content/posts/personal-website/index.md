@@ -7,7 +7,7 @@ draft: false
 
 # Github Pages and Hugo
 
-### **1. Hosting on Github Pages**
+> ### **1. Hosting on Github Pages**
 You can create your website for free just using a Github repo. [GitHub Pages](https://docs.github.com/en/pages) is a static site hosting service provided by Github which turn your repository containing your website statc contents like HTML, CSS, and JavaScript files into a live website. 
 
 Github Pages supports two types of sites 
@@ -24,7 +24,7 @@ You can write all your website contents in markdown files and GitHub Pages will 
 But apart form the default Jekyll, we can also use a different static site generators for more flexibility which we will see next.
 
 
-### **2. Generating the static contents of your site using Hugo**
+> ### **2. Generating the static contents of your site using Hugo**
 [Hugo](https://gohugo.io/) is a static site generator written in [Go](https://go.dev/doc/) language. We would be using `Hugo` to generate our static contents.
 
 To develop the site on your local, first install `Go` as `Hugo` runs using Go
@@ -33,8 +33,6 @@ To install `Go` on windows you can use the below command. For other operating sy
 ```shell
 PS C:\home\Projects> winget install GoLang.Go
 Found Go Programming Language [GoLang.Go] Version 1.27.0
-This application is licensed to you by its owner.
-Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
 Downloading https://go.dev/dl/go1.27.0.windows-amd64.msi
   ██████████████████████████████  63.0 MB / 63.0 MB
 Successfully verified installer hash
@@ -46,15 +44,9 @@ Successfully installed
 Next you need to install `Hugo`. This is how you can install it on windows. For other Operating Systems refer the  [Hugo installation page](https://gohugo.io/installation/)
 ```shell
 PS C:\home\Projects> winget install Hugo.Hugo.Extended
-The `msstore` source requires that you view the following agreements before using.
-Terms of Transaction: https://aka.ms/microsoft-store-terms-of-transaction
-The source requires the current machine's 2-letter geographic region to be sent to the backend service to function properly (ex. "US").
-
 Do you agree to all the source agreements terms?
 [Y] Yes  [N] No: y
 Found Hugo (Extended) [Hugo.Hugo.Extended] Version 0.165.0
-This application is licensed to you by its owner.
-Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
 Downloading https://github.com/gohugoio/hugo/releases/download/v0.165.0/hugo_extended_0.165.0_windows-amd64.zip
   ██████████████████████████████  21.6 MB / 21.6 MB
 Successfully verified installer hash
@@ -111,14 +103,8 @@ Now if you start the `Hugo Server` you should see the home page of your theme. W
 You can use your `VS Code` `IDE` for editing the site contents. For testing the generated content on local you can start the `Hugo Server` from the `IDE Terminal` with the below command
 ```shell
 PS C:\home\Projects\rphukan.github.io> hugo server --buildDrafts
-Watching for changes in C:/home/Projects/rphukan.github.io/archetypes, C:/home/Projects/rphukan.github.io/assets, C:/home/Projects/rphukan.github.io/content, C:/home/Projects/rphukan.github.io/data, C:/home/Projects/rphukan.github.io/i18n, C:/home/Projects/rphukan.github.io/layouts, C:/home/Projects/rphukan.github.io/static
-Watching for config changes in C:\home\Projects\rphukan.github.io\hugo.toml
 Start building sites … 
 hugo v0.165.0-76a5e1880ab46688155b02e99bab9be2a6134492+extended windows/amd64 BuildDate=2026-08-12T14:26:28Z VendorInfo=gohugoio
-
-WARN  found no layout file for "html" for kind "home": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-WARN  found no layout file for "html" for kind "taxonomy": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-
                   │ EN 
 ──────────────────┼────
  Pages            │  4 
@@ -229,17 +215,74 @@ Congratulations!!!!! You are ready now to write your post.
 You can keep editing your post. The server running on local should automatically render the updated content on your browser. Once ready you can change `draft: false` and push the updated contents to the Github Pages repo. If you have the automated build ( which we will see after few steps) configured on Githug Pages, you will see your post on your live site after few moments later.
 
 #### **2.7. Advance(Optional) : Changing the layout**
+As explained before `layouts` directory would contain the layout templates for your site. They are already created in your theme. But if we want to change it, we would be doing it in this directory.
+
+A template is a file with template actions, located within the layouts directory of a project, theme, or module. Templates use variables, functions, and methods to transform your content, resources, and data into a published page.
+
+This is a simple structure of templates that we will explain. [Refer for more details](https://gohugo.io/templates/types/)
+```yaml
+layouts/
+├── _default/
+│   ├── baseof.html   
+│   |── home.html    
+│   ├── single.html   
+│   └── list.html    
+├── _partials/
+│   ├── footer.html
+│   └── header.html
+├── about/
+    └── single.html
+
+```
+* `baseof` - This is the foundational base template that the other templates would use. It would typically have the common elements of your html pages like html, head, and body. Putting them in a base template allows for consistency and avoids redundancy.
+
+* `home` - A home template renders your site’s home page. 
+
+* `single` - A single template is used to renders a regular page. (This is a fallback for a page template)
+
+* `list` - This template renders a list of pages. (This is a fallback for home, section, taxonomy, and term templates)
+
+Usually you would apply the base template to these above templates.
+
+* `partials` - A partial template is typically used to render a component of your site. Its called from an another template.
+
+Hugo considers below parameters when choosing a template for a given page.
+
+* `Kind`
+The Kind of the page, e.g. the home page. This also determines if it is a single page (i.e. a regular content page). We then look for a template in _default/single.html for HTML.  Or a list page (section listings, home page, taxonomy lists, taxonomy terms) in which case we look for a template in _default/list.html for HTML.
+
+* `Layout`
+A front matter which can be set in your page.
+
+* `Type`
+A front matter which can be set in your page.
+
+Now lets say we want to change the layout of a new `about` page
+```yaml
+content/
+└── about/
+    └── index.md
+```
+We can make this content page to target a template by specify type, layout, or both in front matter as shown below.
+In your file `content/about/index.md` add
+```yaml
+---
+title: 'About Me'
+draft: false
+layout: "single"
+type: "about"
+---
+```
+
 
 #### **2.8. Advance(Optional) : Using mathematical expressions**
-You can write mathematical equations and scintific expressions in Markdown using LaTeX markup. [More details](https://gohugo.io/content-management/mathematics/)
+You can write mathematical equations in Markdown using LaTeX markup. [More details](https://gohugo.io/content-management/mathematics/)
 
 #### **2.8. Advance(Optional) : Adding mermaid diagrams**
-[Details](https://gohugo.io/content-management/diagrams/)
+To display mermaid diagram on your page [refer this](https://gohugo.io/content-management/diagrams/)
 
-#### **2.8. Advance(Optional) : Syntax highlighting for Code**
-[Details](https://gohugo.io/content-management/syntax-highlighting/)
 
-### **3. Github actions for CI/CD**
+> ### **3. Automatic build and deployment of your content using Github actions**
 If we use a static site generator other than Jekyll, we need t you write a GitHub Actions to build and publish ous site.
 
 Add the below workflow in a file like `.github/workflows/hugo.yaml` under the root folder of your website repo. Here action `actions/configure-pages@v5` enables the use of GitHub Pages.
@@ -357,5 +400,5 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-### **4. Add your own domain**
+> ### **4. Adding your own domain**
 Finally you can buy a nice domain from any of the domain registrars and [add it to your Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
