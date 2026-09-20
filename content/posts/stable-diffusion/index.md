@@ -147,7 +147,7 @@ conda activate diffusion_env
 ### 4. Run Stable Diffusion
 Now that we have our local setup ready lets get cracking.
 
-#### 4.1. Running it in a notebook
+#### 4.1. Running it step by step
 You can [download the notebook from my repo](https://github.com/rphukan/machine-learning-samples/blob/main/notebooks/stable_diffiusion.ipynb) or follow along.
 
 `Step 1` - start a PowerShell and type WSL
@@ -214,7 +214,7 @@ images = model.text_to_image(
 plot_images(images)
 
 ```
-If you hae followed it so far, you should see the generated images on your notebook as explained [on the guide](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion)
+If you have followed it so far, you should see the generated images on your notebook as explained [on the guide](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion)
 
 Note that we changed the `batch_size` in our code to `1` from what the guide uses. Using a `batch_size=3` needs more VRAM and you may get an `Out of Memory` error. Give it a try.
 
@@ -240,18 +240,134 @@ if gpus:
     except RuntimeError as e:
         print(e)
 ```
+Try running the same again with `batch_size=2` and the above optimizations. Note that Jupyter Notebooks do not automatically release GPU memory when a cell finishes or crashes. Restart the Kernel before running it again.
+
+#### 4.2. Running it with a UI
+Gradio is an open-source Python library that lets you quickly build an interactive, web-based user interface (UI) for your machine learning models or APIs with just a few lines of code. By adding share=True to your launch command, Gradio can also creates a secure, temporary public URL. 
+
+It also embeds right inside your Jupyter Notebook cells, so you can interact with your application without leaving your workspace. It is the industry standard for creating fast demos of Generative AI, Large Language Models (LLMs), image generators, and computer vision scripts (which is why sites like Hugging Face use it extensively).
+
+Below code creates a simple UI to trigger the image generation. It also provides one dropdown to select the generated image style and a slide to adjust the inference steps.
+
+You can [download the notebook from my repo](https://github.com/rphukan/machine-learning-samples/blob/main/notebooks/image_generation.ipynb) or follow along.
+
+`Step 1` - start a PowerShell and type WSL
+
+`Step 2` - check your available conda environments. It should show the *diffusion_env* that we created
+
+`Step 3` - activate your *conda diffusion_env* jupyter notebook
+
+`Step 4` - start your *jupyter notebook* and run the code below
+
+`Step 5` - open the Gradio UI from the URL or use the one displayed on the notebook
+
+`Step 6` - provide a prompt and select the input parameters
+
+`Step 7` - click generate and wait for the image to apear on the output section
+
+```python
+import gradio as gr
+import keras_cv
+import tensorflow as tf
+
+# 1. Apply our working GPU optimizations
+gpus = tf.config.list_physical_devices("GPU")
+if gpus:
+    for gpu in gpus:
+        tf.config.experimental.set_memory_growth(gpu, True)
+tf.keras.mixed_precision.set_global_policy("mixed_float16")
+
+model = keras_cv.models.StableDiffusion(img_width=512, img_height=512)
+
+# Dictionary matching style choices with their prompt modifiers
+STYLE_PROMPTS = {
+    "None (Raw Prompt)": "{}",
+    "Cinematic Photorealistic": "{}, cinematic lighting, highly detailed, 8k resolution, photorealistic, shot on 35mm lens",
+    "Anime / Manga": "{}, anime style, vibrant colors, clean line art, studio ghibli aesthetic, highly detailed",
+    "Oil Painting": "{}, classic oil painting style, visible canvas texture, thick brush strokes, masterpiece, fine art",
+    "Cyberpunk / Sci-Fi": "{}, cyberpunk aesthetic, neon glow, futuristic technology, dark synthwave mood, highly detailed sci-fi concept art",
+    "Watercolor": "{}, soft watercolor wash, ink splatters, elegant, artistic, textured paper style",
+}
 
 
-#### 4.1. Running it with a UI
-You can [download the notebook from my repo](https://github.com/rphukan/machine-learning-samples/blob/main/notebooks/stable_diffiusion.ipynb) or follow along.
+# 2. Updated generation function accepting steps and styles
+def generate_image_advanced(prompt, num_steps, art_style):
+    # Apply the art style modifier template to your prompt string
+    styled_prompt = STYLE_PROMPTS[art_style].format(prompt)
+    print(f"Generating with prompt: {styled_prompt} | Steps: {num_steps}")
+
+    # Generate image using user specified steps
+    generated_images = model.text_to_image(
+        styled_prompt, num_steps=int(num_steps), batch_size=1
+    )
+
+    # FIX: Extract the first image from the batch array to make it 3D
+    return generated_images[0]
+
+
+
+# 3. Build the Upgraded Gradio Layout
+with gr.Blocks(title="Advanced Stable Diffusion Studio") as demo:
+    gr.Markdown("# 🚀 Advanced Stable Diffusion Studio")
+    gr.Markdown(
+        "Fine-tune generation steps and apply professional art styles to enhance image accuracy."
+    )
+
+    with gr.Row():
+        # Left column: Controls
+        with gr.Column(scale=1):
+            prompt_input = gr.Textbox(
+                label="Base Prompt",
+                placeholder="e.g., an astronaut riding a horse...",
+                lines=3,
+            )
+
+            art_style_dropdown = gr.Dropdown(
+                choices=list(STYLE_PROMPTS.keys()),
+                value="None (Raw Prompt)",
+                label="Choose Art Style Preset",
+            )
+
+            steps_slider = gr.Slider(
+                minimum=10,
+                maximum=75,
+                value=25,
+                step=5,
+                label="Inference Steps (Higher = More Details / Slower)",
+            )
+
+            generate_btn = gr.Button("Generate Masterpiece", variant="primary")
+
+        # Right column: Output display
+        with gr.Column(scale=1):
+            image_output = gr.Image(label="Generated Output")
+
+    # Hook up interface interactive elements
+    generate_btn.click(
+        fn=generate_image_advanced,
+        inputs=[prompt_input, steps_slider, art_style_dropdown],
+        outputs=image_output,
+    )
+
+# Launch interface locally on WSL network binding
+demo.launch(server_name="127.0.0.1", server_port=7860, show_error=True)
+
+```
+
+This is the UI that you should see. Try generating some images with different art styles and number of steps.
+
+
+![Image generation UI](ui.png)
 
 ### 5. Monitor your GPU 
-By default, running just nvidia-smi gives you a single, static snapshot of your GPU's current status (like temperature, VRAM usage, and power draw). But if you want to monitor your GPU load and watch it work in real time, you can open a fresh Ubuntu terminal window alongside your notebook and run the command below.  It tells the terminal to refresh and run nvidia-smi every half a second (twice per second). This is very useful when training machine learning models or running heavy CUDA scripts because it lets you see exactly when your GPU usage spikes or drops instantly.
+By default, running just `nvidia-smi` gives you a single, static snapshot of your GPU's current status (like temperature, VRAM usage, and power draw). But if you want to monitor your GPU load and watch it work in real time, you can open a fresh Ubuntu terminal window alongside your notebook and run the command below.  It tells the terminal to refresh and run nvidia-smi every half a second (twice per second). This is very useful when training machine learning models or running heavy CUDA scripts because it lets you see exactly when your GPU usage spikes or drops instantly.
 
 ```shell
 watch -n 0.5 nvidia-smi
 ```
+Observe the temperature, power draw, VRAM usage, and GPU usage.
 
+![GPU Monitoring output](gpu-monitoring.png)
 
 
 
