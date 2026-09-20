@@ -369,5 +369,21 @@ Observe the temperature, power draw, VRAM usage, and GPU usage.
 
 ![GPU Monitoring output](gpu-monitoring.png)
 
+### 6. Stable Diffusion Architecture
+For more technical details about StableDiffusion read through the [How Does This Rork](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion#wait_how_does_this_even_work) section of the guide. 
+Here is a quick glimps of the Stable Diffusion Architecture as explained in the guide.
 
+Stable Diffusion consists of three parts
+
+* A text encoder, which turns your prompt into a latent vector.
+
+* A diffusion model, which repeatedly "denoises" a 64x64 latent image patch.
+
+* A decoder, which turns the final 64x64 latent patch into a higher-resolution 512x512 image.
+
+First, your text prompt gets projected into a latent vector space by the text encoder, which is simply a pretrained, frozen language model. Then that prompt vector is concatenated to a randomly generated noise patch, which is repeatedly "denoised" by the diffusion model over a series of "steps" (the more steps you run the clearer and nicer your image will be -- the default value is 50 steps).
+
+Finally, the 64x64 latent image is sent through the decoder to properly render it in high resolution.
+
+![The Stable Diffusion Architecture](architecture.png)
 
