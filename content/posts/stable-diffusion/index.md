@@ -370,7 +370,7 @@ Observe the temperature, power draw, VRAM usage, and GPU usage.
 ![GPU Monitoring output](gpu-monitoring.png)
 
 ### 6. Stable Diffusion Architecture
-For more technical details about StableDiffusion read through the [How Does This Rork](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion#wait_how_does_this_even_work) section of the guide. 
+For more technical details about StableDiffusion read through the [How Does This Work](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion#wait_how_does_this_even_work) section of the guide. 
 Here is a quick glimps of the Stable Diffusion Architecture as explained in the guide.
 
 Stable Diffusion consists of three parts
