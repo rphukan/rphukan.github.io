@@ -17,7 +17,7 @@ The site is going to be available at `http(s)://<owner>.github.io`. Here `<owner
 
 * A site for your project 
 
-This can be enabled for each of your repository and the site would be available at `http(s)://<owner>.github.io/<repositoryname>`. The contents for the site is stored in the `root` or `docs` folder of your repository. For example [this](https://rphukan.github.io/msr-documentation/) is the documentaion of a sample application that i have in my github account. 
+`http(s)://<owner>.github.io/<repositoryname>` , this can be enabled for each of your repository. The contents for the site is stored in the `root` or `docs` folder of your repository. For example [this](https://rphukan.github.io/msr-documentation/) is the documentaion of a sample application that i have in my github account. 
 
 You can write all your website contents in markdown files and GitHub Pages will use Jekyll to build your site by default from the markdown files. With this your site is ready and you should be able to access it on the urls as mentioned above.
 
