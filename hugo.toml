@@ -7,10 +7,20 @@ title        = 'Ranjan Phukan'
   keywords    = "Ranjan Phukan, personal website, blog, portfolio"
   avatar      = "img/ranjan.jpg"
   custom_css  = ["css/custom.css"]
+  math        = false
 
   [params.author]
     name = 'Ranjan Phukan'
   
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
 
 # Add theme using Hugo modules
 [module]

@@ -7,7 +7,7 @@ draft: false
 
 # Github Pages and Hugo
 
-> ### **1. Hosting on Github Pages**
+### **1. Hosting on Github Pages**
 You can create your website for free just using a Github repo. [GitHub Pages](https://docs.github.com/en/pages) is a static site hosting service provided by Github which turn your repository containing your website statc contents like HTML, CSS, and JavaScript files into a live website. 
 
 Github Pages supports two types of sites 
@@ -24,7 +24,7 @@ You can write all your website contents in markdown files and GitHub Pages will 
 But apart form the default Jekyll, we can also use a different static site generators for more flexibility which we will see next.
 
 
-> ### **2. Generating the static contents of your site using Hugo**
+### **2. Generating the static contents of your site using Hugo**
 [Hugo](https://gohugo.io/) is a static site generator written in [Go](https://go.dev/doc/) language. We would be using `Hugo` to generate our static contents.
 
 To develop the site on your local, first install `Go` as `Hugo` runs using Go
@@ -282,7 +282,7 @@ You can write mathematical equations in Markdown using LaTeX markup. [More detai
 To display mermaid diagram on your page [refer this](https://gohugo.io/content-management/diagrams/)
 
 
-> ### **3. Automatic build and deployment of your content using Github actions**
+### **3. Automatic build and deployment of your content using Github actions**
 If we use a static site generator other than Jekyll, we need t you write a GitHub Actions to build and publish ous site.
 
 Add the below workflow in a file like `.github/workflows/hugo.yaml` under the root folder of your website repo. Here action `actions/configure-pages@v5` enables the use of GitHub Pages.
@@ -400,5 +400,5 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-> ### **4. Adding your own domain**
+### **4. Adding your own domain**
 Finally you can buy a nice domain from any of the domain registrars and [add it to your Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
