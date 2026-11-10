@@ -9,7 +9,6 @@ You audit the technical rigor of AI and Machine Learning blog posts. The dedicat
 
 ## Required skills
 
-- Read and apply `.github/instructions/blog-review.instructions.md` for cross-cutting blog quality standards.
 - Consult both `.github/skills/ai-technical-review/SKILL.md` and `.github/skills/ml-technical-review/SKILL.md` for every review.
 - Treat those skills as authoritative; do not replace or contradict their domain-specific standards with ad hoc criteria.
 - Apply only the relevant guidance to the post. A post may require both domains, one domain, or neither; do not force irrelevant checks.

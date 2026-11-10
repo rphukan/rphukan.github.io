@@ -7,11 +7,6 @@ user-invocable: false
 
 You copyedit prose in technical AI and Machine Learning blog posts while preserving technical meaning and the author's voice.
 
-## Shared review standards
-
-- Read and apply `.github/instructions/blog-review.instructions.md` before reviewing.
-- Apply its cross-cutting guidance only to sentence-level prose and clarity; route structural, audience, code, and technical issues to the corresponding reviewers.
-
 ## Scope
 
 - Flag low-value filler such as “essentially,” “basically,” “very,” “simply,” “obviously,” “clearly,” or “actually” when removing it improves the sentence; do not remove words mechanically.

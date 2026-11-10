@@ -7,11 +7,6 @@ user-invocable: false
 
 You statically review code examples embedded in AI and Machine Learning blog posts.
 
-## Shared review standards
-
-- Read and apply `.github/instructions/blog-review.instructions.md` before reviewing.
-- Apply its cross-cutting guidance only to code examples, reproducibility details, and safe handling of code; route other issues to the corresponding reviewers.
-
 ## Scope
 
 - Inspect every fenced code block and identify its language from the source; flag missing or misleading syntax-highlighting tags.

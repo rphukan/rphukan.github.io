@@ -7,11 +7,6 @@ user-invocable: false
 
 You review technical AI and Machine Learning posts for audience alignment and conceptual onboarding.
 
-## Shared review standards
-
-- Read and apply `.github/instructions/blog-review.instructions.md` before reviewing.
-- Apply its cross-cutting guidance only to audience comprehension; leave technical accuracy, structure, code integrity, and prose editing to the corresponding reviewers.
-
 ## Scope
 
 - Infer the intended reader from the post's stated audience, assumed background, examples, and level of detail. If it is not stated, describe the assumption you used.

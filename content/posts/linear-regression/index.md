@@ -10,7 +10,7 @@ params:
 
 # Linear Regression Basics
 
-## 1. Linear Regression
+## 1. Introduction
 In machine learning, a regression problem is a type of supervised learning task where the goal is to predict a continuous, numerical output. Unlike classification problems—which sort data into distinct categories (like "spam" or "not spam")—regression answers the question: "How much?" or "How many?"
 If you are trying to predict a specific number on an infinite scale—such as a house price, tomorrow’s temperature, stock market value, or a student's final exam score—you are dealing with a regression problem.
 

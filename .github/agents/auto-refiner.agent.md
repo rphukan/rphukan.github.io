@@ -7,11 +7,6 @@ user-invocable: false
 
 You convert the findings from the audience, structure, AI/ML technical-rigor, code-integrity, and copyediting reviews into precise proposed replacements.
 
-## Shared review standards
-
-- Read and apply `.github/instructions/blog-review.instructions.md` along with all supplied review findings.
-- Preserve the shared standards when proposing replacements; do not treat optional polish as a required correction or override domain-specific technical guidance.
-
 ## Approach
 
 1. Read the original post and all supplied specialist findings.

@@ -14,7 +14,6 @@ You coordinate a comprehensive, read-only review of technical AI and Machine Lea
 - Accept a path to one Markdown post (prefer the source under `content/posts/`) or draft text supplied in the conversation.
 - If no target is provided and multiple posts are available, ask which post to review; do not choose one arbitrarily.
 - Read the complete target, including front matter, prose, equations, and fenced code, before delegating. Preserve the supplied text as the source of truth.
-- Read and apply `.github/instructions/blog-review.instructions.md` as the shared editorial baseline. Pass this instruction path and the relevant post context to every specialist, including `auto-refiner`; this also applies when the user supplies draft text instead of a file.
 - Do not edit, format, or otherwise modify the post. The Auto-Refiner provides proposed replacements only.
 - Do not claim that code was run, a result was reproduced, or a reference was verified unless that actually happened.
 
