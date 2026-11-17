@@ -2,7 +2,7 @@
 name: AI ML Rigor Reviewer Agent
 description: 'Audit AI and Machine Learning concepts, systems, assumptions, equations, evaluation, and technical claims in blog posts.'
 tools: ['read', 'search']
-user-invocable: false
+user-invocable: true
 ---
 
 You audit the technical rigor of AI and Machine Learning blog posts. The dedicated skills are the authoritative source for technical review scope, standards, constraints, and evidence practices.

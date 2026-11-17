@@ -2,7 +2,7 @@ title = "Skills"
 
 [[skill]]
   title = "Cloud Computing"
-  text  = "GCP-certified architect with deep expertise in developing scalable serverless and containerized services. As well as, experienced with writing infrastructure as code with Terraform."
+  text  = "GCP-certified architect with deep expertise in developing scalable serverless and containerized services. Experienced with writing infrastructure as code with Terraform."
   icon  = "bx-cloud"
 
 [[skill]]
@@ -21,11 +21,11 @@ title = "Skills"
   icon  = "bx-grid-alt"
 
 [[skill]]
-  title = "Event-Driven Architecture & Kafka"
+  title = "Event-Driven Architecture and Kafka"
   text  = "Proven track record in building resilient, event-driven microservices with Apache Kafka. Skilled in managing high-volume data streams and implementing complex event processing using Kafka Streams for real-time business logic."
   icon  = "bx-pulse" 
 
 [[skill]]
-  title = "AI ML"
+  title = "AI and ML"
   text  = "Practitioner and continuous learner in Generative AI and ML. Technical knowledge includes LangChain, TensorFlow, RAG, and agentic frameworks, supported by a strong foundation in ML algorithms and data manipulation using Pandas and NumPy. Skilled in building interactive AI tools and dashboards via Streamlit and Dash."
   icon  = "bx-chip"
