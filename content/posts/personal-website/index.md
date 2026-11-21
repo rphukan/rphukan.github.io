@@ -42,7 +42,7 @@ Successfully installed
 ```
 
 ### 2.2. Install Hugo
-Next you need to install `Hugo`. This is how you can install it on windows. For other operating Systems refer the  [Hugo installation page](https://gohugo.io/installation/)
+Next you need to install `Hugo`. This is how you can install it on Windows. For other operating Systems refer the  [Hugo installation page](https://gohugo.io/installation/)
 ```shell
 PS C:\home\Projects> winget install Hugo.Hugo.Extended
 Do you agree to all the source agreements terms?
@@ -174,7 +174,7 @@ This directory is for localizing your content with different languages.
 The layout folder would contain the templates for laying out your site structure. Your theme should already provide you a layout but if you want to override that default behavior, you would do it here with your own layout templates. Start with the default one provided by the theme and if required you can override it later.
 
 *   `static`
-The static directory contains files that will be copied to the public directory when you build your project. This can also contain CSS and JavaScript files, though the newer aproach for them is the `assets` directory.
+The static directory contains files that will be copied to the public directory when you build your project. This can also contain CSS and JavaScript files, though the newer approach for them is the `assets` directory.
 
 * [`themes`](https://gohugo.io/getting-started/directory-structure/#theme-skeleton)
 This is where you add your themes as Git submodules. Hugo themes use the Hugo [unified file system](https://gohugo.io/quick-reference/glossary/#unified-file-system) and use the same directories that we have discussed here. This allows you to override a theme’s template by adding your own copy of it in the same location within the project directory.
@@ -217,7 +217,7 @@ Congratulations! You are ready to write your first post.
 
 You can keep editing your post. The server running on your local machine should automatically render the updated content on your browser. Once ready you can change `draft: false` and push the updated content to the GitHub Pages repo. If you have the automated build (which we will see in a few steps) configured on GitHub Pages, you will see your post on your live site a few moments later.
 
-### 2.7. Advance(Optional) : Changing the layout
+### 2.7. Advanced(Optional) : Changing the layout
 As explained before `layouts` directory contain the layout templates for your site. They are already created in your theme. To change it, use this directory.
 
 A template is a file with template actions, located within the layouts directory of a project, theme, or module. Templates use variables, functions, and methods to transform your content, resources, and data into a published page.
@@ -266,7 +266,8 @@ content/
 └── about/
     └── index.md
 ```
-We can make this content page to target a template by specifying type, layout, or both in front matter as shown below.
+Specify the page type, layout, or both in the front matter to select a template.
+
 In your file `content/about/index.md` add
 ```yaml
 ---
