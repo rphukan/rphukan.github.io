@@ -11,13 +11,14 @@ draft: false
 You can create your website for free just using a GitHub repo. [GitHub Pages](https://docs.github.com/en/pages) is a static site hosting service. It turns a repository containing static HTML, CSS, JavaScript, and related files into a live website. 
 
 GitHub Pages supports two types of sites 
-* A site for a user or an organization account
 
-The site is going to be available at `http(s)://<owner>.github.io`. Here `<owner>` is the account name of the account holder and `<owner>.github.io` is the repository name where all the site contents are stored. For example [this](https://rphukan.github.io/) is my personal website link where you are reading this blog. Since I have my personal domain linked on GitHub Pages, you will actually see it on `https://ranjanphukan.com`
+- A site for a user or an organization account
 
-* A site for your project 
+  The site is going to be available at `http(s)://<owner>.github.io`. Here `<owner>` is the account name of the account holder and `<owner>.github.io` is the repository name where all the site contents are stored. For example [this](https://rphukan.github.io/) is my personal website link where you are reading this blog. Since I have my personal domain linked on GitHub Pages, you will actually see it on `https://ranjanphukan.com`
 
-`http(s)://<owner>.github.io/<repositoryname>` can be enabled for each of your repositories. The contents for the site is stored in the `root` or `docs` folder of your repository. For example [this](https://rphukan.github.io/msr-documentation/) is the documentation of a sample application that I have in my GitHub account. 
+- A site for your project 
+
+  `http(s)://<owner>.github.io/<repositoryname>` can be enabled for each of your repositories. The contents for the site is stored in the `root` or `docs` folder of your repository. For example [this](https://rphukan.github.io/msr-documentation/) is the documentation of a sample application that I have in my GitHub account. 
 
 You can write all your website contents in markdown files and GitHub Pages will use Jekyll to build your site by default from the markdown files. With this your site is ready and you should be able to access it on the urls as mentioned above.
 
