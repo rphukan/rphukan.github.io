@@ -6,27 +6,28 @@ draft: false
 ---
 
 # Running Stable Diffusion Locally
-### 1. Introduction
-Wanted to test the RTX 5050 (8 GB) GPU on my laptop. So thought of running a Stable Diffusion Model for image generation. Since I was exploring TensorFlow for sometime, picked up this guide [High-performance image generation using Stable Diffusion in KerasCV](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion) for a step by step guidance.
+## 1. Introduction
+I wanted to test the RTX 5050 (8 GB) GPU in my laptop, so I decided to run a Stable Diffusion model for image generation. Since I had been exploring TensorFlow for some time, I chose this guide [High-performance image generation using Stable Diffusion in KerasCV](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion) for a step-by-step guidance.
 
-### 2. Stable Diffusion
-We will use the KerasCV implementation of the [Stable Diffusion Model](https://github.com/CompVis/stable-diffusion). Stable Diffusion is an open-source text-to-image model which generate images based on a text prompt. 
+## 2. Stable Diffusion
+We will use the KerasCV implementation of the [Stable Diffusion Model](https://github.com/CompVis/stable-diffusion). Stable Diffusion is an open-source text-to-image model that generates images from text prompts. 
 
-[KerasCV](https://github.com/keras-team/keras-cv) is an extension of the Keras API which contains a library of modular computer vision components that work natively with TensorFlow. These APIs are used in common computer vision tasks such as data augmentation, classification, object detection, segmentation, image generation, and more. Refer the [Keras Documentaion](https://keras.io/getting_started/) for more details.
+[KerasCV](https://github.com/keras-team/keras-cv) is an extension of the Keras API which contains a library of modular computer vision components that work natively with TensorFlow. These APIs are used in common computer vision tasks such as data augmentation, classification, object detection, segmentation, image generation, and more. Refer the [Keras Documentation](https://keras.io/getting_started/) for more details.
 
-### 3. Local Setup
-If you are trying this on a Windows machine like me, very soon you will see the below warning 
+## 3. Local Setup
+If you are trying this on a Windows machine like me, very soon you will see the following warning. 
 ```shell    
 TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
 ```
-The warning you are seeing means that TensorFlow cannot use your GPU because native Windows support for GPUs was dropped starting with TensorFlow 2.11. Your code will still run, but it will execute on your CPU, which will make running Stable Diffusion incredibly slow.To enable GPU acceleration on Windows for TensorFlow 2.11 or newer, you have two primary solutions.
+The warning you are seeing means that TensorFlow cannot use your GPU because native Windows support for GPUs was dropped starting with TensorFlow 2.11. Your code will still run, but it will execute on your CPU, which will make running Stable Diffusion incredibly slow. To enable GPU acceleration on Windows for TensorFlow 2.11 or newer, you have two primary solutions.
 
 * `Use Windows Subsystem for Linux (WSL2)` - This is the official and most performant way to run modern TensorFlow with GPU support on Windows. It runs a lightweight Linux environment inside Windows where TensorFlow GPU support is fully functional.
 
-* `Downgrade TensorFlow to 2.10` - If you want to keep running everything natively on Windows without dealing with WSL2, you can downgrade TensorFlow to the last version that natively supported Windows GPUs. Though I would not recommend this and I did not try this.
+* `Downgrade TensorFlow to 2.10` - If you want to keep running everything natively on Windows without dealing with WSL2, you can downgrade TensorFlow to the last version that natively supported Windows GPUs. I do not recommend this option and have not tested it.
 
-#### 3.1. WSL2 - Windows Subsystem for Linux
-If you dont have WSL2 already installed, open PowerShell as Administrator and run the below command to Install WSL2 
+### 3.1. WSL2 - Windows Subsystem for Linux
+If you don't have WSL2 already installed, open PowerShell as Administrator and run the following command to install WSL2.
+
 ```shell
 wsl --install
 ```
@@ -34,16 +35,16 @@ Restart your computer when prompted. Next you will need to set up your username 
 
 Your Windows files are completely accessible from inside WSL2. Your Windows C: drive is mounted under /mnt/c/.
 
-#### 3.2. Python
-Next we will need to setup Python and we will use Conda here for our Python setup. 
+### 3.2. Python
+Next, we will set up Python using Conda. 
 ```shell
-# install wget if mising
+# install wget if missing
 sudo apt update && sudo apt install wget -y
 
 # download miniconda installer
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
-# runn the installer
+# run the installer
 bash Miniconda3-latest-Linux-x86_64.sh
 
 # To make the conda command active, close your Ubuntu window and reopen it, or simply run
@@ -56,8 +57,9 @@ conda create --name diffusion_env python=3.11 -y
 conda activate diffusion_env
 ```
 
-#### 3.3. Setup Jupyter Notebook
-Next we will setup Jupyter notebook to run this lab 
+### 3.3. Setup Jupyter Notebook
+Next we will set up Jupyter Notebook.
+ 
 ```shell
 # activate the virtual environment
 conda activate diffusion_env
@@ -72,9 +74,9 @@ python -m ipykernel install --user --name=diffusion_env --display-name "Python 3
 Because Jupyter is running inside a lightweight Linux terminal (WSL2), it doesn't have a built-in desktop browser (like Chrome or Edge) to launch automatically. Simply open your regular Windows web browser (Chrome, Edge, Firefox) and manually copy and paste one of the URLs from your terminal output into the address bar.
 
 
-#### 3.4. Setup for the lab
-Next we will need to install tensorflow and its compatible CUDA packages. CUDA and cuDNN are deep learning software packages created by NVIDIA that massively accelerate Python code by running it on a graphics card (GPU) instead of the computer's main processor (CPU).
-* `CUDA (Compute Unified Device Architecture)` - CUDA is a software platform that unlocks the GPU for general-purpose mathematical computing. It allows programming languages like Python or C++ to talk directly to the thousands of tiny calculation cores inside an NVIDIA GPU.Without CUDA, libraries like PyTorch or TensorFlow cannot access your GPU's hardware acceleration.
+### 3.4. Setup for the lab
+Next we will need to install TensorFlow and its compatible CUDA packages. CUDA and cuDNN are deep learning software packages created by NVIDIA that massively accelerate Python code by running it on a graphics card (GPU) instead of the computer's main processor (CPU).
+* `CUDA (Compute Unified Device Architecture)` - CUDA is a software platform that unlocks the GPU for general-purpose mathematical computing. It allows programming languages like Python or C++ to talk directly to the thousands of tiny calculation cores inside an NVIDIA GPU. Without CUDA, libraries like PyTorch or TensorFlow cannot access your GPU's hardware acceleration.
 * `cuDNN (CUDA Deep Neural Network library)` - It sits on top of CUDA and provides highly tuned implementations for standard deep learning routines. It includes pre-written, hyper-optimized code for building blocks like forward/backward passes, convolutions (CNNs), pooling, and activation functions. While CUDA gives you the ability to use the GPU, cuDNN ensures that your specific AI operations run at absolute peak physical performance. NVIDIA engineers constantly update cuDNN so that popular AI architectures execute as fast as possible on their latest microarchitectures.
 ```shell
 ┌────────────────────────────────────────────────────────┐
@@ -94,12 +96,12 @@ Next we will need to install tensorflow and its compatible CUDA packages. CUDA a
 └────────────────────────────────────────────────────────┘
 
 ```
-I used the below compatible versions
+I used the following compatible versions.
 ```shell
 # activate the virtual environment
 conda activate diffusion_env
 
-# install the below stable pacjages
+# install the below stable packages
 pip install tensorflow==2.15.0
 pip install nvidia-cudnn-cu12==8.9.2.26 nvidia-cuda-runtime-cu12==12.2.140
 pip install keras_cv==0.9.0
@@ -107,12 +109,12 @@ pip install protobuf==4.25.3
 pip install tensorflow-datasets==4.9.3
 ```
 
-#### 3.5. Verify your Setup
+### 3.5. Verify your Setup
 Even though you are inside WSL2 Linux, TensorFlow still needs to talk to your physical graphics card via the Windows host system. So first, let's see if WSL2 can even see your graphics card. Run this command in your Ubuntu prompt:
 ```shell
 nvidia-smi
 ```
-If it displays your graphics card name (as shown below for my case), Great! This means your driver mapping is working fine. If it says command not found or gives an error: Your Windows NVIDIA driver might be outdated. Go to your Windows desktop, update your graphics driver to the latest version via GeForce Experience, restart your PC, and try running nvidia-smi again in Ubuntu. This is what you should see after `nvidia-smi`
+If it displays your graphics card name (as shown below for my case), this means your driver mapping is working fine. If it says command not found or gives an error, your Windows NVIDIA driver might be outdated. Go to your Windows desktop, update your graphics driver to the latest version via GeForce Experience, restart your PC, and try running nvidia-smi again in Ubuntu. This is what you should see after `nvidia-smi`
 ![NVIDIA SMI output](gpu.png)
 
 Now you can check if TensorFlow recognizes your graphics card by running this quick Python snippet:
@@ -144,10 +146,10 @@ conda activate diffusion_env
 
 ```
 
-### 4. Run Stable Diffusion
-Now that we have our local setup ready lets get cracking.
+## 4. Run Stable Diffusion
+Now that we have our local setup ready let's get cracking.
 
-#### 4.1. Running it step by step
+### 4.1. Running it step by step
 You can [download the notebook from my repo](https://github.com/rphukan/machine-learning-samples/blob/main/notebooks/stable_diffiusion.ipynb) or follow along.
 
 `Step 1` - start a PowerShell and type WSL
@@ -204,7 +206,7 @@ def plot_images(images):
 
 plot_images(images)
 
-# try an another prompt and plot the generated image
+# try another prompt and plot the generated image
 images = model.text_to_image(
     "cute magical flying dog, fantasy art, "
     "golden color, high quality, highly detailed, elegant, sharp focus, "
@@ -214,7 +216,7 @@ images = model.text_to_image(
 plot_images(images)
 
 ```
-If you have followed it so far, you should see the generated images on your notebook as explained [on the guide](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion)
+If you have followed it so far, you should see the generated images on your notebook as explained [in the guide](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion)
 
 Note that we changed the `batch_size` in our code to `1` from what the guide uses. Using a `batch_size=3` needs more VRAM and you may get an `Out of Memory` error. Give it a try.
 
@@ -230,7 +232,7 @@ policy = mixed_precision.Policy('mixed_float16')
 mixed_precision.set_global_policy(policy)
 ```
 
-`Allow Memory GrowthBy default` - TensorFlow tries to map and lock down almost all available VRAM at startup. If Windows or another app suddenly requests a bit of memory, TensorFlow crashes. Forcing memory growth tells TensorFlow to only allocate VRAM incrementally as needed.Add this right under your imports:
+`Allow Memory Growth` - TensorFlow tries to map and lock down almost all available VRAM at startup. If Windows or another app suddenly requests a bit of memory, TensorFlow may crash. Forcing memory growth tells TensorFlow to only allocate VRAM incrementally as needed. Add this right under your imports:
 ```python
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:
@@ -240,14 +242,14 @@ if gpus:
     except RuntimeError as e:
         print(e)
 ```
-Try running the same again with `batch_size=2` and the above optimizations. Note that Jupyter Notebooks do not automatically release GPU memory when a cell finishes or crashes. Restart the Kernel before running it again.
+Try running the same again with `batch_size=2` and the above optimizations. Note that Jupyter Notebooks do not automatically release GPU memory when a cell finishes or crashes. Restart the kernel before running it again.
 
-#### 4.2. Running it with a UI
-Gradio is an open-source Python library that lets you quickly build an interactive, web-based user interface (UI) for your machine learning models or APIs with just a few lines of code. By adding share=True to your launch command, Gradio can also creates a secure, temporary public URL. 
+### 4.2. Running it with a UI
+Gradio is an open-source Python library that lets you quickly build an interactive, web-based user interface (UI) for your machine learning models or APIs with just a few lines of code. By adding share=True to your launch command, Gradio can also create a secure, temporary public URL. 
 
 It also embeds right inside your Jupyter Notebook cells, so you can interact with your application without leaving your workspace. It is the industry standard for creating fast demos of Generative AI, Large Language Models (LLMs), image generators, and computer vision scripts (which is why sites like Hugging Face use it extensively).
 
-Below code creates a simple UI to trigger the image generation. It also provides one dropdown to select the generated image style and a slide to adjust the inference steps.
+Below code creates a simple UI to trigger the image generation. It also provides one dropdown to select the generated image style and a slider to adjust the inference steps.
 
 You can [download the notebook from my repo](https://github.com/rphukan/machine-learning-samples/blob/main/notebooks/image_generation.ipynb) or follow along.
 
@@ -263,7 +265,7 @@ You can [download the notebook from my repo](https://github.com/rphukan/machine-
 
 `Step 6` - provide a prompt and select the input parameters
 
-`Step 7` - click generate and wait for the image to apear on the output section
+`Step 7` - click generate and wait for the image to appear in the output section
 
 ```python
 import gradio as gr
@@ -359,8 +361,8 @@ This is the UI that you should see. Try generating some images with different ar
 
 ![Image generation UI](ui.png)
 
-### 5. Monitor your GPU 
-By default, running just `nvidia-smi` gives you a single, static snapshot of your GPU's current status (like temperature, VRAM usage, and power draw). But if you want to monitor your GPU load and watch it work in real time, you can open a fresh Ubuntu terminal window alongside your notebook and run the command below.  It tells the terminal to refresh and run nvidia-smi every half a second (twice per second). This is very useful when training machine learning models or running heavy CUDA scripts because it lets you see exactly when your GPU usage spikes or drops instantly.
+## 5. Monitor your GPU 
+By default, running just `nvidia-smi` gives you a single, static snapshot of your GPU's current status (like temperature, VRAM usage, and power draw). But if you want to monitor your GPU load and watch it work in real time, you can open a fresh Ubuntu terminal window alongside your notebook and run the command below. It tells the terminal to refresh and run nvidia-smi every half a second (twice per second). This is very useful when training machine learning models or running heavy CUDA scripts because it lets you see exactly when your GPU usage spikes or drops instantly.
 
 ```shell
 watch -n 0.5 nvidia-smi
@@ -369,11 +371,11 @@ Observe the temperature, power draw, VRAM usage, and GPU usage.
 
 ![GPU Monitoring output](gpu-monitoring.png)
 
-### 6. Stable Diffusion Architecture
-For more technical details about StableDiffusion read through the [How Does This Work](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion#wait_how_does_this_even_work) section of the guide. 
-Here is a quick glimps of the Stable Diffusion Architecture as explained in the guide.
+## 6. Stable Diffusion Architecture
+For more technical details about Stable Diffusion read through the [How Does This Work](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion#wait_how_does_this_even_work) section of the guide. 
+Here is a quick glimpse of the Stable Diffusion Architecture as explained in the guide.
 
-Stable Diffusion consists of three parts
+Stable Diffusion consists of three parts:
 
 * A text encoder, which turns your prompt into a latent vector.
 
@@ -381,7 +383,7 @@ Stable Diffusion consists of three parts
 
 * A decoder, which turns the final 64x64 latent patch into a higher-resolution 512x512 image.
 
-First, your text prompt gets projected into a latent vector space by the text encoder, which is simply a pretrained, frozen language model. Then that prompt vector is concatenated to a randomly generated noise patch, which is repeatedly "denoised" by the diffusion model over a series of "steps" (the more steps you run the clearer and nicer your image will be -- the default value is 50 steps).
+First, your text prompt gets projected into a latent vector space by the text encoder, which is simply a pretrained, frozen language model. Then that prompt vector is concatenated to a randomly generated noise patch, which is repeatedly "denoised" by the diffusion model over a series of "steps" (the more steps you run the clearer and more detailed your image will be). The default value is 50 steps.
 
 Finally, the 64x64 latent image is sent through the decoder to properly render it in high resolution.
 
