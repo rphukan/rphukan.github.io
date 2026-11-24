@@ -7,7 +7,7 @@ draft: false
 
 # Running Stable Diffusion Locally
 ## 1. Introduction
-I wanted to test the RTX 5050 (8 GB) GPU in my laptop, so I decided to run a Stable Diffusion model for image generation. Since I had been exploring TensorFlow for some time, I chose this guide [High-performance image generation using Stable Diffusion in KerasCV](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion) for a step-by-step guidance.
+I wanted to test the RTX 5050 (8 GB) GPU in my laptop by running a Stable Diffusion model. This guide is for readers with basic Python and TensorFlow familiarity who want to configure GPU inference on Windows through WSL2. I chose this guide [High-performance image generation using Stable Diffusion in KerasCV](https://www.tensorflow.org/tutorials/generative/generate_images_with_stable_diffusion) for a step-by-step guidance.
 
 ## 2. Stable Diffusion
 We will use the KerasCV implementation of the [Stable Diffusion Model](https://github.com/CompVis/stable-diffusion). Stable Diffusion is an open-source text-to-image model that generates images from text prompts. 
